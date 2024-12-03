@@ -1,6 +1,6 @@
-
-lista_nombre = [] # type: list
-
+#import numpy as np
+#lista_nombre = [] # type: list
+#almacen = {}
 def main():
     opcion = 0
     while opcion != 6:
@@ -25,15 +25,14 @@ def Menu():
     opcion = int(input("Opcion: "))
     return opcion
 
-def Agregar():
-    
-    print("Ingrese el nombre del libro: ")
+def Agregar(): 
+  '''  print("Ingrese el nombre del libro: ")
     lista_nombre.append(input())
     print("Ingrese el autor del libro: ")
     lista_nombre.append(input())
     print("Ingresse el año de publicacion del libro: ")
     lista_nombre.append(int(input()))
-    print("Libro agregado")
+    print("Libro agregado")'''
     
 def Prestar():
     print("Ha elegido la opcion 2")
