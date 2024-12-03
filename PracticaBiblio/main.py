@@ -43,7 +43,9 @@ def Devolver():
     return
 def Mostrar():
     return
+    
 def Buscar():
+    
     print("Ha elegido la opcion 5")
     return
 def Salir():
