@@ -1,6 +1,7 @@
 #import numpy as np
 #lista_nombre = [] # type: list
-#almacen = {}
+almacen = {"Titulo", "Autor", "Año"}
+datos = {"", "", ""}
 def main():
     opcion = 0
     while opcion != 6:
@@ -25,15 +26,18 @@ def Menu():
     opcion = int(input("Opcion: "))
     return opcion
 
-def Agregar(): 
-  '''  print("Ingrese el nombre del libro: ")
-    lista_nombre.append(input())
-    print("Ingrese el autor del libro: ")
-    lista_nombre.append(input())
-    print("Ingresse el año de publicacion del libro: ")
-    lista_nombre.append(int(input()))
-    print("Libro agregado")'''
+def Agregar():
+    for i in range(0, 1):
+        almacen[i] = {"Titulo", "Autor", "Año"}
+        datos[i] = {"", "", ""}
+        print("Ingrese el titulo del libro: ")
+        datos[i].append(input())
+        print("Ingrese el autor del libro: ")
+        datos[i+1].append(input())
+        print("Ingrese la fecha de publicacion del libro: ")
+        datos[i+2].append(input())
     
+    return
 def Prestar():
     print("Ha elegido la opcion 2")
     return
