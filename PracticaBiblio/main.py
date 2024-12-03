@@ -36,7 +36,7 @@ def Agregar():
     print("Libro agregado")
     
 def Prestar():
-    print("Ha elegido la opcion 2")
+    
     return
 def Devolver():
     print("Ha elegido la opcion 3")
