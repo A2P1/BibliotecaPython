@@ -1,6 +1,7 @@
 #import numpy as np
 #lista_nombre = [] # type: list
 diccionario = [] # Creo un diccionario vacio para almacenar libros
+#diccionario_aux = [] #Creo un diccinario auxiliar para almacenar los libros prestados
 def main():
     opcion = 0
     while opcion != 6:
@@ -49,6 +50,7 @@ def Prestar():
     for i in range(len(diccionario)):
         if diccionario[i]["titulo"] == buscar: #Busco en el diccionario si existe el libro que ha solicitado el usuario
             print(f"El libro {buscar} ha sido prestado con exito ")
+           # diccionario_aux.append(diccionario[i]) #Añado el libro al diccionario auxiliar
             diccionario.pop(i) #Elimino el libro prestado del diccionario
             break
         else:
@@ -56,7 +58,6 @@ def Prestar():
             break
         
 def Devolver():
-    print("Ha elegido la opcion 3")
     return
 def Mostrar():
    for i, libro in enumerate(diccionario, start=1):
