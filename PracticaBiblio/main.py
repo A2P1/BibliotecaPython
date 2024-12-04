@@ -1,7 +1,6 @@
 #import numpy as np
 #lista_nombre = [] # type: list
-almacen = {"Titulo", "Autor", "Año"}
-datos = {"", "", ""}
+diccionario = {}
 def main():
     opcion = 0
     while opcion != 6:
@@ -27,17 +26,14 @@ def Menu():
     return opcion
 
 def Agregar():
-    for i in range(0, 1):
-        almacen[i] = {"Titulo", "Autor", "Año"}
-        datos[i] = {"", "", ""}
-        print("Ingrese el titulo del libro: ")
-        datos[i].append(input())
-        print("Ingrese el autor del libro: ")
-        datos[i+1].append(input())
-        print("Ingrese la fecha de publicacion del libro: ")
-        datos[i+2].append(input())
+    titulo = input("Ingrese el título del libro: ")
+    autor = input("Ingrese el autor del libro: ")
+    año = int(input("Ingrese el año de publicación del libro: "))
     
-    return
+    diccionario["titulo"] = titulo
+    diccionario["autor"] = autor
+    diccionario["año"] = año
+    
 def Prestar():
     print("Ha elegido la opcion 2")
     return
@@ -45,6 +41,8 @@ def Devolver():
     print("Ha elegido la opcion 3")
     return
 def Mostrar():
+    for clave, valor in diccionario.items():
+        print(f"{clave}: {valor}")
     return
     
 def Buscar():
