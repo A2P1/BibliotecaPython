@@ -50,10 +50,10 @@ def Devolver():
     print("Ha elegido la opcion 3")
     return
 def Mostrar():
-   ''' for i, libro in enumerate(diccionario, start=1):
+   for i, libro in enumerate(diccionario, start=1):
         print(f"Libro {i}")
         for clave, valor in libro.items():
-            print(f"{clave}: {valor}")'''
+            print(f"{clave}: {valor}")
     
 def Buscar():
     
