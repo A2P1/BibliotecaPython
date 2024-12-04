@@ -35,7 +35,8 @@ def Agregar():
         autor = input("Ingrese el autor del libro: ")
         año = int(input("Ingrese el año de publicación del libro: "))
         
-        libros["titulo"] = titulo
+        titulo_n = normalizar(titulo)
+        libros["titulo"] = titulo_n
         libros["autor"] = autor
         libros["año"] = año
         diccionario.append(libros) #Añado el diccionario que contie los datos del libro al diccionario principal
@@ -47,8 +48,9 @@ def Agregar():
 def Prestar():
     
     buscar = input("Ingrese el título del libro que desea prestar: ")
+    buscar_n = normalizar(buscar)
     for i in range(len(diccionario)):
-        if diccionario[i]["titulo"] == buscar: #Busco en el diccionario si existe el libro que ha solicitado el usuario
+        if diccionario[i]["titulo"] == buscar_n: #Busco en el diccionario si existe el libro que ha solicitado el usuario
             print(f"El libro {buscar} ha sido prestado con exito ")
             diccionario_aux.append(diccionario[i]) #Añado el libro al diccionario auxiliar
             diccionario.pop(i) #Elimino el libro prestado del diccionario
@@ -59,8 +61,9 @@ def Prestar():
         
 def Devolver():
     devolver = input("Ingrese el título del libro que desea devolver: ")
+    devolver_n = normalizar(devolver)
     for i in range(len(diccionario_aux)):
-        if diccionario_aux[i]["titulo"] == devolver: #Busco en el diccionario auxiliar si existe el libro que quiere devolver
+        if diccionario_aux[i]["titulo"] == devolver_n: #Busco en el diccionario auxiliar si existe el libro que quiere devolver
             
             diccionario.append(diccionario_aux[i])#Muevo el libro del diccionario auxiliar al diccionario principal
             diccionario_aux.pop(i) #Elimino el libro del diccionario auxiliar
@@ -80,8 +83,9 @@ def Mostrar():
 def Buscar():
 
     buscar = input("Ingrese el titulo del libro que quiere buscar: ")
+    buscar_normalizado = normalizar(buscar)
     for i in range(len(diccionario)):
-        if (diccionario[i]["titulo"] == buscar):
+        if (diccionario[i]["titulo"] == buscar_normalizado):
             print(diccionario[i])
             break
         else:
@@ -90,5 +94,7 @@ def Buscar():
 
 def Salir():
     exit()
+def normalizar(texto):
+    return texto.lower().strip()
     
 main()
