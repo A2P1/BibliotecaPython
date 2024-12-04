@@ -65,9 +65,16 @@ def Mostrar():
             print(f"{clave}: {valor}")
     
 def Buscar():
-    
-    print("Ha elegido la opcion 5")
-    return
+
+    buscar = input("Ingrese el titulo del libro que quiere buscar: ")
+    for i in range(len(diccionario)):
+        if (diccionario[i]["titulo"] == buscar):
+            print(diccionario[i])
+            break
+        else:
+            print("No se encontro el libro")
+            break
+
 def Salir():
     exit()
     
