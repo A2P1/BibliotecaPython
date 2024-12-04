@@ -45,7 +45,15 @@ def Agregar():
     
 def Prestar():
     
-    return
+    buscar = input("Ingrese el título del libro que desea prestar: ")
+    for i in range(len(diccionario)):
+        if diccionario[i]["titulo"] == buscar: #Busco en el diccionario si existe el libro que ha solicitado el usuario
+            print(f"El libro {buscar} ha sido prestado con exito ")
+            diccionario.pop(i) #Elimino el libro prestado del diccionario
+            break
+        else:
+            print(f"El libro {buscar} no existe") # Si no encuentra dicho libro, muestra un mensaje de error
+            break
 def Devolver():
     print("Ha elegido la opcion 3")
     return
