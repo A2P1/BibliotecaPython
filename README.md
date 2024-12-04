@@ -31,3 +31,28 @@
 
 ========MEJORAS========
 - Utilizar la rama abandonada para imprimir correctamente el mensaje de "No se encontró ningún libro" cuando el diccionario esté vacío. Por ahora solo se sale del loop y no lo imprime
+
+========POSIBLES EXTENSIONES DEL PROGRAMA========
+Guardar y cargar datos en un archivo:
+
+  Permite guardar el catálogo en un archivo de texto o JSON para que no se pierdan los datos al cerrar el programa.
+    Usa las funciones open() y el módulo json.
+
+Gestión de usuarios:
+
+  Permite agregar un sistema de usuarios con nombres y contraseñas.
+    Registra qué usuario tomó prestado cada libro.
+
+Historial de préstamos:
+
+  Lleva un registro de qué libros han sido prestados y devueltos, y cuándo ocurrió.
+    Usa listas adicionales o un archivo para guardar este historial.
+
+Ordenamiento y filtrado:
+
+  Agrega una opción para ordenar los libros por título, autor o año.
+    Permite filtrar libros por autor o año.
+
+Interfaz gráfica:
+
+  Usa una librería como tkinter para crear una interfaz gráfica para tu programa.
