@@ -37,6 +37,7 @@ Guardar y cargar datos en un archivo:
 
   Permite guardar el catálogo en un archivo de texto o JSON para que no se pierdan los datos al cerrar el programa.
     Usa las funciones open() y el módulo json.
+    - Guardando los datos directamente no me ha funcionado. Probaré guardar todos los datos en el diccionario y posteriormente guardaré toda esa información en el fichero para guardarlo
 
 Gestión de usuarios:
 
