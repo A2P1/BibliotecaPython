@@ -1,5 +1,6 @@
 #import numpy as np
 #lista_nombre = [] # type: list
+import json
 diccionario = [] # Creo un diccionario vacio para almacenar libros
 diccionario_aux = [] #Creo un diccinario auxiliar para almacenar los libros prestados
 def main():
@@ -36,10 +37,14 @@ def Agregar():
         año = int(input("Ingrese el año de publicación del libro: "))
         
         titulo_n = normalizar(titulo)
+  
         libros["titulo"] = titulo_n
         libros["autor"] = autor
         libros["año"] = año
+        
         diccionario.append(libros) #Añado el diccionario que contie los datos del libro al diccionario principal
+        with open("Libros.json","a") as file: #crea un fichero llamado Libros.json
+            json.dump(libros, file) #Guarda la informacion creada en el fichero
         continuar = input("Desea agregar otro libro? (S/N): ").upper() #Pregunto si desea agregar otro libro
         if continuar != "S": # SI no quiere agregar otro libro, salgo del bucle
             break
@@ -75,10 +80,13 @@ def Devolver():
             break   
    
 def Mostrar():
-   for i, libro in enumerate(diccionario, start=1):
+    with open("Libros.json","r") as file:
+        libros_cargados = json.load(file)
+    print(libros_cargados)
+'''for i, libro in enumerate(diccionario, start=1)
         print(f"Libro {i}")
         for clave, valor in libro.items():
-            print(f"{clave}: {valor}")
+            print(f"{clave}: {valor}")'''
     
 def Buscar():
 
