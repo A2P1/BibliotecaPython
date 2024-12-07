@@ -80,13 +80,13 @@ def Devolver():
             break   
    
 def Mostrar():
-    with open("Libros.json","r") as file:
+    '''with open("Libros.json","r") as file:
         libros_cargados = json.load(file)
-    print(libros_cargados)
-'''for i, libro in enumerate(diccionario, start=1)
+    print(libros_cargados)'''
+    for i, libro in enumerate(diccionario, start=1):
         print(f"Libro {i}")
         for clave, valor in libro.items():
-            print(f"{clave}: {valor}")'''
+            print(f"{clave}: {valor}")
     
 def Buscar():
 
