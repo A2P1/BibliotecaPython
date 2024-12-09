@@ -111,7 +111,17 @@ def MandarFichero():
         json.dump(diccionario, file, indent=3) #Guardo la información en el archivo poniendo que almacene en cada objeto 3 datos
         
 
-
+def InicioSesion():
+    usuario = input("Introduzca su nombre de usuario: ")
+    contraseña = input("Introduzca su contraseña: ")
+    with open("Usuarios.json", "r") as file:
+        for i in json.load(file):
+            if i["Usuario"] == usuario and i["Contrasena"] == contraseña:
+                Menu()
+                break
+            else:
+                print("Usuario o contraseña incorrectos")
+                InicioSesion()
 
 def Registro(cont):
     lista = {} #Creo una lista vacía para alamcenar los datos de usuario y su contraseña
@@ -136,6 +146,6 @@ def Registro(cont):
 def Salir():
     exit()
 def normalizar(texto):
-    return texto.lower().strip()
+    return texto.lower().strip() #Funcion para normalizar el texto
     
 main()
