@@ -36,12 +36,12 @@
 Guardar y cargar datos en un archivo:
 
   Permite guardar el catálogo en un archivo de texto o JSON para que no se pierdan los datos al cerrar el programa.
-    Usa las funciones open() y el módulo json.
-    - Guardando los datos directamente no me ha funcionado. Probaré guardar todos los datos en el diccionario y posteriormente guardaré toda esa información en el fichero para guardarlo
+  HECHO---
 
 Gestión de usuarios:
 
   Permite agregar un sistema de usuarios con nombres y contraseñas.
+  HECHO---- (Falta terminar funcion de inicio de sesión)  
     Registra qué usuario tomó prestado cada libro.
 
 Historial de préstamos:
