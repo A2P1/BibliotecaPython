@@ -5,7 +5,7 @@ diccionario = [] # Creo un diccionario vacio para almacenar libros
 diccionario_aux = [] #Creo un diccinario auxiliar para almacenar los libros prestados
 def main():
     opcion = 0
-    while opcion != 6:
+    while opcion != 7:
         opcion = Menu()
         if opcion == 1:
             Agregar()
@@ -17,7 +17,9 @@ def main():
             Mostrar()
         elif opcion == 5:
             Buscar()
-        elif opcion == 6:  
+        elif opcion == 6:
+            MandarFichero()
+        elif opcion == 7:  
             Salir()
         
 def Menu():
@@ -43,8 +45,8 @@ def Agregar():
         libros["año"] = año
         
         diccionario.append(libros) #Añado el diccionario que contie los datos del libro al diccionario principal
-        with open("Libros.json","a") as file: #crea un fichero llamado Libros.json
-            json.dump(libros, file) #Guarda la informacion creada en el fichero
+        '''with open("Libros.json","a") as file: #crea un fichero llamado Libros.json
+            json.dump(libros, file) #Guarda la informacion creada en el fichero'''
         continuar = input("Desea agregar otro libro? (S/N): ").upper() #Pregunto si desea agregar otro libro
         if continuar != "S": # SI no quiere agregar otro libro, salgo del bucle
             break
@@ -99,7 +101,10 @@ def Buscar():
         else:
             print("No se encontro el libro")
             break
-
+        
+def MandarFichero():
+    with open("Libros.json", "w") as file: #Edito el archivo Libros.json para incluir el diccionario
+        json.dump(diccionario, file, indent=3) #Guardo la información en el archivo poniendo que almacene en cada objeto 3 datos
 def Salir():
     exit()
 def normalizar(texto):
