@@ -4,8 +4,8 @@ import json
 diccionario = [] # Creo un diccionario vacio para almacenar libros
 diccionario_aux = [] #Creo un diccinario auxiliar para almacenar los libros prestados
 diccionario_usuario = [] #Diccionario vacío para guardar la informacion de los usuarios
-
 def main():
+
     cont = 0
     Registro(cont)
     opcion = 0
@@ -111,37 +111,44 @@ def MandarFichero():
         json.dump(diccionario, file, indent=3) #Guardo la información en el archivo poniendo que almacene en cada objeto 3 datos
         
 
-def InicioSesion():
+'''def InicioSesion():
     usuario = input("Introduzca su nombre de usuario: ")
     contraseña = input("Introduzca su contraseña: ")
-    with open("Usuarios.json", "r") as file:
-        for i in json.load(file):
-            if i["Usuario"] == usuario and i["Contrasena"] == contraseña:
-                Menu()
-                break
-            else:
-                print("Usuario o contraseña incorrectos")
-                InicioSesion()
+    buscar = open("Usuarios.json", "r")
+    for i in buscar:
+        if usuario == i[0]:
+            buscar2 = open("Contrasena.json","r")
+            for i in buscar2:
+                if contraseña == i[0]:
+                    Menu()
+        else:
+            print("Usuario o contraseña incorrectos o no existe la cuenta")
+            InicioSesion()'''
 
 def Registro(cont):
+    '''inicio = input("Tiene ya una cuenta creada?S/N")
+    if inicio == "S":
+        InicioSesion()
+    else:'''
     lista = {} #Creo una lista vacía para alamcenar los datos de usuario y su contraseña
     usuario = input("Ingrese un nombre del usuario: ")
     contraseña = input("Ingrese una contrasena:")
     contraseña2 = input("Vuelva a ingresar la contrasena: ")
-    
+        
     if contraseña != contraseña2: #Compruebo que las contraseñas coinciden, si no, vuelvo a registrar
         print("Las contrasenas no coinciden")
         cont += 1
         print(cont)
         if cont == 3: #Si falla 3 veces, se sale del programa
             Salir()
-        Registro(cont)
+            Registro(cont)
     else:
         lista["Usuario"] = usuario # Almaceno los datos en la lista
         lista["Contrasena"] = contraseña
         diccionario_usuario.append(lista) # Añado los datos al diccionario
         with open("Usuarios.json", "w") as file:
             json.dump(diccionario_usuario, file, indent=2) #Escribo el fichero Usuarios.json para añadir los datos del usuario
+
             
 def Salir():
     exit()
