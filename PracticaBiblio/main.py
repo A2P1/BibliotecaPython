@@ -1,13 +1,24 @@
 #import numpy as np
 #lista_nombre = [] # type: list
 import json
-diccionario = [] # Creo un diccionario vacio para almacenar libros
-diccionario_aux = [] #Creo un diccinario auxiliar para almacenar los libros prestados
-diccionario_usuario = [] #Creo un diccionario vacio para almacenar libros
+fichero = "Usuarios.json"
+fichero2 = "Libros.json"
+
+#diccionario_aux = [] #Creo un diccinario auxiliar para almacenar los libros prestados
+try:
+    with open(fichero2, "r", encoding="utf-8") as file:
+        contenido2 = json.load(file)
+except FileNotFoundError:
+    contenido2 = []
+try:
+    with open(fichero, "r", encoding="utf-8") as file:
+        contenido = json.load(file)
+except FileNotFoundError:
+    contenido = []
+
 def main():
     cont = 0
     Registro(cont)
-    MandarFicheroUsuario()
     opcion = 0
     while opcion != 7:
         opcion = Menu()
@@ -21,15 +32,13 @@ def main():
             Mostrar()
         elif opcion == 5:
             Buscar()
-        elif opcion == 6:
-            MandarFichero()
-        elif opcion == 7:  
+        elif opcion == 6:  
             Salir()
         
 def Menu():
     print("Bienvenido a la Biblioteca de Practica")
     print("Elija una opcion")
-    print("1. Agregar libro\n2. Prestar libro\n3. Devolver libro\n4. Mostrar libros disponibles\n5. Buscar libro\n6. Mandar datos a fichero\n7. Salir")
+    print("1. Agregar libro\n2. Prestar libro\n3. Devolver libro\n4. Mostrar libros disponibles\n5. Buscar libro\n6. Salir")
     opcion = int(input("Opcion: "))
     return opcion
 
@@ -44,13 +53,20 @@ def Agregar():
         
         titulo_n = normalizar(titulo)
   
-        libros["titulo"] = titulo_n
+        libros[titulo_n] = 0
         libros["autor"] = autor
         libros["año"] = año
         
-        diccionario.append(libros) #Añado el diccionario que contiene los datos del libro al diccionario principal
-        '''with open("Libros.json","a") as file: #crea un fichero llamado Libros.json
-            json.dump(libros, file) #Guarda la informacion creada en el fichero'''
+
+        if isinstance (contenido2, list): #Si es una lisa, lo agrega
+            contenido2.append(libros)
+        elif isinstance(contenido2, dict): #Si es un diccionario, lo actualiza
+            contenido2.update(libros)
+        else:
+            raise TypeError("Contenido no reconocido") #Si no es un diccionario o lista, lanzo un error
+            
+        with open(fichero2, "w", encoding="utf-8") as file:
+            json.dump(contenido2, file, indent=2)
         continuar = input("Desea agregar otro libro? (S/N): ").upper() #Pregunto si desea agregar otro libro
         if continuar != "S": # SI no quiere agregar otro libro, salgo del bucle
             break
@@ -58,7 +74,7 @@ def Agregar():
     
 def Prestar():
     
-    buscar = input("Ingrese el título del libro que desea prestar: ")
+   ''' buscar = input("Ingrese el título del libro que desea prestar: ")
     buscar_n = normalizar(buscar)
     for i in range(len(diccionario)):
         if diccionario[i]["titulo"] == buscar_n: #Busco en el diccionario si existe el libro que ha solicitado el usuario
@@ -68,10 +84,10 @@ def Prestar():
             break
         else:
             print(f"El libro {buscar} no existe") # Si no encuentra dicho libro, muestra un mensaje de error
-            break
+            break'''
         
 def Devolver():
-    devolver = input("Ingrese el título del libro que desea devolver: ")
+   ''' devolver = input("Ingrese el título del libro que desea devolver: ")
     devolver_n = normalizar(devolver)
     for i in range(len(diccionario_aux)):
         if diccionario_aux[i]["titulo"] == devolver_n: #Busco en el diccionario auxiliar si existe el libro que quiere devolver
@@ -83,20 +99,20 @@ def Devolver():
             break
         else:
             print(f"El libro {devolver} no existe")
-            break   
+            break   '''
    
 def Mostrar():
-    '''with open("Libros.json","r") as file:
+ '''   with open("Libros.json","r") as file:
         libros_cargados = json.load(file)
-    print(libros_cargados)'''
+    print(libros_cargados)
     for i, libro in enumerate(diccionario, start=1):
         print(f"Libro {i}")
         for clave, valor in libro.items():
-            print(f"{clave}: {valor}")
+            print(f"{clave}: {valor}")'''
     
 def Buscar():
 
-    buscar = input("Ingrese el titulo del libro que quiere buscar: ")
+    '''buscar = input("Ingrese el titulo del libro que quiere buscar: ")
     buscar_normalizado = normalizar(buscar)
     for i in range(len(diccionario)):
         if (diccionario[i]["titulo"] == buscar_normalizado):
@@ -104,14 +120,8 @@ def Buscar():
             break
         else:
             print("No se encontro el libro")
-            break
+            break'''
         
-def MandarFichero():
-    with open("Libros.json", "w") as file: #Edito el archivo Libros.json para incluir el diccionario
-        json.dump(diccionario, file, indent=3) #Guardo la información en el archivo poniendo que almacene en cada objeto 3 datos
-
-
-
 '''def InicioSesion():
     usuario = input("Introduzca su nombre de usuario: ")
     #contraseña = input("Introduzca su contraseña: ")
@@ -127,17 +137,20 @@ def Registro(cont):
 
     lista = {} #Creo una lista vacía para alamcenar los datos de usuario y su contraseña
     usuario = input("Ingrese un nombre del usuario: ")
-    #contraseña = input("Ingrese una contrasena:")
+    contraseña = input("Ingrese una contrasena:")
     #contraseña2 = input("Vuelva a ingresar la contrasena: ")
             
 
-    lista["usuario"] = usuario # Almaceno los datos en la lista
-    diccionario_usuario.append(lista) # Añado los datos al diccionario
-    
-
-def MandarFicheroUsuario(): #EN PYTHON HAY QUE RESPETAR EL ORDEN DE LAS FUNCIONES
-    with open("Usuarios.json", "w") as file:
-        json.dump(diccionario_usuario, file, indent=1)      
+    lista[usuario] = contraseña # Almaceno los datos en la lista
+    if isinstance (contenido, list): #Si es una lisa, lo agrega
+        contenido.append(lista)
+    elif isinstance(contenido, dict): #Si es un diccionario, lo actualiza
+        contenido.update(lista)
+    else:
+        raise TypeError("Contenido no reconocido") #Si no es un diccionario o lista, lanzo un error
+        
+    with open(fichero, "w", encoding="utf-8") as file:
+        json.dump(contenido, file, indent=2)
             
 def Salir():
     exit()
